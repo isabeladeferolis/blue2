@@ -1,0 +1,265 @@
+/* RESET GERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Removido @keyframes waterAnimation e .card::before/::after aqui */
+
+/* CORPO COM IMAGEM DE NATUREZA */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed; /* Fundo de floresta com água */
+  background-size: cover;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* CABEÇALHO */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  color: #1a1a1a; /* Corrigido: Cor mais escura para o título do cabeçalho */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7); /* Sombra para legibilidade em fundo variável */
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #333333; /* Corrigido: Cor mais escura para o parágrafo do cabeçalho */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7); /* Sombra para legibilidade */
+  margin-bottom: 20px;
+}
+
+.header-info {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Removido .iema-logo */
+
+.turma-info {
+  font-size: 1.2rem;
+  color: #333333; /* Corrigido: Cor mais escura para a informação da turma */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7); /* Sombra para legibilidade */
+  font-weight: bold;
+}
+
+/* CONTAINER DOS CARDS INFORMATIVOS */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  max-width: 1200px;
+  margin-bottom: 50px;
+}
+
+/* CARD COM VISUAL DE VIDRO FOSCO - NORMAL DOS CARDS INFORMATIVOS */
+.card {
+  background: rgba(255, 255, 255, 0.15); /* Cor normal e transparente */
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 0; /* Remover padding do card para o canvas ocupar todo o espaço */
+  width: 260px;
+  color: #1a1a1a; /* Corrigido: Cor mais escura para o texto geral do card */
+  text-decoration: none;
+  border-left: 5px solid #ffffff40;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, background-color 0.3s;
+  position: relative; /* Necessário para posicionar o canvas e o conteúdo */
+  overflow: hidden; /* Garante que o canvas não transborde */
+  display: flex; /* Para flexbox interno do card-content */
+  flex-direction: column; /* Para flexbox interno do card-content */
+  justify-content: space-between; /* Para flexbox interno do card-content */
+}
+
+/* ESTILO DO CANVAS DE ÁGUA */
+.water-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Garante que fique atrás do conteúdo do card */
+  border-radius: 16px; /* Para seguir a borda do card */
+}
+
+/* CONTEÚDO DO CARD SOBRE O CANVAS */
+.card-content {
+  position: relative; /* Garante que o conteúdo fique sobre o canvas */
+  z-index: 1; /* Acima do canvas */
+  padding: 20px; /* Adicionar o padding de volta ao conteúdo */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25); /* Mais opaco no hover para destacar */
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #1a1a1a; /* Corrigido: Cor mais escura para títulos de card */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Sombra para legibilidade */
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #333333; /* Corrigido: Cor mais escura para parágrafos de card */
+}
+
+/* DIFERENCIAÇÃO POR CATEGORIA - Bordas coloridas */
+.card.atmosfera { border-left: 5px solid #00b0ff; } /* Azul vívido para atmosfera */
+.card.temperatura { border-left: 5px solid #ff4d4d; } /* Vermelho para temperatura */
+.card.luz { border-left: 5px solid #ffc107; color: #1a1a1a; } /* Amarelo dourado para luz (e cor de texto já escura) */
+.card.umidade { border-left: 5px solid #29b6f6; } /* Azul claro para umidade */
+
+
+/* MONITORAMENTO SECTION AND CARD - COM BACKGROUND MAIS TRANSPARENTE E EFEITO ÁGUA */
+.monitoring-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.card.monitoramento {
+  background: rgba(255, 255, 255, 0.15); /* Cor normal e transparente */
+  backdrop-filter: blur(10px);
+  width: 90%;
+  max-width: 800px;
+  border: 2px solid #00bfff; /* Borda azul */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  padding: 0; /* Remover padding do card para o canvas ocupar todo o espaço */
+  text-align: center;
+  transition: transform 0.3s, background-color 0.3s;
+  position: relative; /* Necessário para posicionar o canvas e o conteúdo */
+  overflow: hidden; /* Garante que o canvas não transborde */
+}
+
+/* Estilo do canvas para o card de monitoramento */
+.card.monitoramento .water-canvas {
+    /* Mantém os estilos gerais do .water-canvas */
+    z-index: -1;
+    border-radius: 16px;
+}
+
+/* Conteúdo do card de monitoramento */
+.card.monitoramento .card-content {
+    position: relative;
+    z-index: 1;
+    padding: 30px; /* Adicionar padding de volta aqui */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.card.monitoramento:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.25); /* Mais opaco no hover */
+}
+
+.card.monitoramento h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #1a1a1a; /* Corrigido: Cor mais escura para o título do card de monitoramento */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7); /* Sombra para legibilidade */
+}
+
+.card.monitoramento p {
+  font-size: 1.2rem;
+  color: #333333; /* Corrigido: Cor mais escura para o parágrafo do card de monitoramento */
+  margin-bottom: 25px;
+}
+
+.card.monitoramento .live-link {
+  display: inline-block;
+  background-color: #00c853; /* Um verde mais vivo e ousado para o botão */
+  color: #ffffff; /* Mantido branco para contraste com o botão verde */
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card.monitoramento .live-link:hover {
+  background-color: #00a845; /* Um verde um pouco mais escuro no hover */
+  transform: translateY(-2px);
+}
+
+
+/* RODAPÉ */
+footer {
+  text-align: center;
+  margin-top: auto;
+  color: #333333; /* Corrigido: Cor mais escura para o rodapé */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4); /* Sombra para legibilidade */
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  .card {
+    width: calc(50% - 25px);
+  }
+
+  .card.monitoramento {
+    width: 95%;
+    padding: 0; /* Manter 0 e usar o padding do card-content */
+  }
+
+  .card.monitoramento .card-content {
+    padding: 25px; /* Ajustar padding para telas menores */
+  }
+
+  .card.monitoramento h2 {
+    font-size: 1.6rem;
+  }
+
+  .card.monitoramento p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 20px 10px;
+  }
+  .card {
+    width: 100%;
+  }
+
+  /* Removido .iema-logo aqui também */
+
+  .turma-info {
+    font-size: 1rem;
+  }
+}
